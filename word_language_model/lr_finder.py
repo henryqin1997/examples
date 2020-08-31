@@ -233,3 +233,4 @@ if len(args.onnx_export) > 0:
     # Export the model in ONNX format.
     export_onnx(args.onnx_export, batch_size=1, seq_len=args.bptt)
 
+json.dump(open('wikitext-lstm-lr-range-test.log'))
