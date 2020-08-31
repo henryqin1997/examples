@@ -26,8 +26,8 @@
       <file leaf-file-name="lr_finder.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lr_finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
-              <caret line="200" column="43" lean-forward="true" selection-start-line="200" selection-start-column="43" selection-end-line="200" selection-end-column="43" />
+            <state relative-caret-position="267">
+              <caret line="185" column="13" lean-forward="true" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
               <folding>
                 <element signature="e#16#31#0" expanded="true" />
               </folding>
@@ -296,8 +296,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lr_finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="200" column="43" lean-forward="true" selection-start-line="200" selection-start-column="43" selection-end-line="200" selection-end-column="43" />
+        <state relative-caret-position="267">
+          <caret line="185" column="13" lean-forward="true" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
           <folding>
             <element signature="e#16#31#0" expanded="true" />
           </folding>
