@@ -140,8 +140,8 @@ optimizer = torch.optim.SGD(model.parameters(),lr=1,momentum=0.9)
 best_val_loss = None
 
 def lrs(batch):
-    low = math.log2(1e-5)
-    high = math.log2(100)
+    low = math.log2(1e-1)
+    high = math.log2(10000)
     return 2**(low+(high-low)*batch/train_data.size(0)/args.epochs)
 
 lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,lrs)
