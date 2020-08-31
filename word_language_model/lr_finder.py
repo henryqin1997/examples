@@ -194,7 +194,7 @@ def train():
         optimizer.step()
         lr_scheduler.step()
 
-        total_loss += loss.item()
+        total_loss.append(loss.item())
 
         if batch % args.log_interval == 0 and batch > 0:
             cur_loss = total_loss / args.log_interval
@@ -234,4 +234,4 @@ if len(args.onnx_export) > 0:
     export_onnx(args.onnx_export, batch_size=1, seq_len=args.bptt)
 
 file = open('wikitext-2_lstm_lr_range_find.json','w+')
-json.dump(trainloss_list,file)
+json.dump(train_loss,file)
