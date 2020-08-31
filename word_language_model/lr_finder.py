@@ -142,7 +142,7 @@ best_val_loss = None
 def lrs(batch):
     low = math.log2(1e-5)
     high = math.log2(100)
-    return 2**(low+(high-low)*batch/train_data.size(0)/args.num_epoch)
+    return 2**(low+(high-low)*batch/train_data.size(0)/args.epochs)
 
 lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,lrs)
 train_loss = []
