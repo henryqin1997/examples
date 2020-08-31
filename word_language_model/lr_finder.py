@@ -194,7 +194,7 @@ def train():
         optimizer.step()
         lr_scheduler.step()
 
-        total_loss.append(loss.item())
+        total_loss += loss.item()
 
         if batch % args.log_interval == 0 and batch > 0:
             cur_loss = total_loss / args.log_interval
