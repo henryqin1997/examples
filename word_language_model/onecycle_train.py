@@ -6,9 +6,11 @@ import os
 import torch
 import torch.nn as nn
 import torch.onnx
+import json
 
 import data
 import model
+
 
 parser = argparse.ArgumentParser(description='PyTorch Wikitext-2 RNN/LSTM/GRU/Transformer Language Model')
 parser.add_argument('--data', type=str, default='./data/wikitext-2',
@@ -94,6 +96,8 @@ eval_batch_size = 10
 train_data = batchify(corpus.train, args.batch_size)
 val_data = batchify(corpus.valid, eval_batch_size)
 test_data = batchify(corpus.test, eval_batch_size)
+train_loss = []
+valid_loss = []
 
 ###############################################################################
 # Build the model
@@ -189,6 +193,7 @@ def train():
         lr_scheduler.step()
 
         total_loss += loss.item()
+        train_loss.append(loss.item())
 
         if batch % args.log_interval == 0 and batch > 0:
             cur_loss = total_loss / args.log_interval
@@ -222,6 +227,7 @@ try:
         epoch_start_time = time.time()
         train()
         val_loss = evaluate(val_data)
+        valid_loss.append(val_loss)
         print('-' * 89)
         print('| end of epoch {:3d} | time: {:5.2f}s | valid loss {:5.2f} | '
                 'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time),
@@ -258,3 +264,7 @@ print('=' * 89)
 if len(args.onnx_export) > 0:
     # Export the model in ONNX format.
     export_onnx(args.onnx_export, batch_size=1, seq_len=args.bptt)
+
+fn = 'onecycle_maxlr{}_epoch{}_pct{}_div{}_findiv{}.json'.format(args.lr,args.epochs,args.pct_start,args.div_factor,args.final_div)
+file = open(fn,'w+')
+json.dump([train_loss,valid_loss,test_loss],file)
