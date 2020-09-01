@@ -50,7 +50,9 @@ parser.add_argument('--nhead', type=int, default=2,
                     help='the number of heads in the encoder/decoder of the transformer model')
 parser.add_argument('--dry-run', action='store_true',
                     help='verify the code and the model')
-
+parser.add_argument('--div-factor',default=25,type=float)
+parser.add_argument('--final-div',default=10000,type=float)
+parser.add_argument('--pct-start',default=0.3,type=float)
 args = parser.parse_args()
 
 # Set the random seed manually for reproducibility.
@@ -107,7 +109,7 @@ criterion = nn.NLLLoss()
 
 optimizer = torch.optim.SGD(model.parameters(),lr=1,momentum=0.9)
 lr_scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,args.lr,steps_per_epoch=len(range(0, train_data.size(0) - 1, args.bptt)),
-                                                   epochs=args.epochs)
+                                                   epochs=args.epochs,div_factor=args.div_factor,final_div_factor=args.final_div,pct_start=args.pct_start)
 
 ###############################################################################
 # Training code
