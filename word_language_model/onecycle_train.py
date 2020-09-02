@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 import torch.onnx
 import json
+from novograd import NovoGrad
 
 import data
 import model
@@ -111,7 +112,7 @@ else:
 
 criterion = nn.NLLLoss()
 
-optimizer = torch.optim.SGD(model.parameters(),lr=1,momentum=0.9)
+optimizer = NovoGrad(model.parameters(),lr=1, weight_decay=1e-4)
 lr_scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,args.lr,steps_per_epoch=len(range(0, train_data.size(0) - 1, args.bptt)),
                                                    epochs=args.epochs,div_factor=args.div_factor,final_div_factor=args.final_div,pct_start=args.pct_start)
 

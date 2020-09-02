@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 import torch.onnx
 import json
+from novograd import NovoGrad
 
 import data
 import model
@@ -136,7 +137,7 @@ def get_batch(source, i):
     return data, target
 
 lr = args.lr
-optimizer = torch.optim.SGD(model.parameters(),lr=1,momentum=0.9)
+optimizer = NovoGrad(model.parameters(),lr=1,weight_decay=1e-4)
 best_val_loss = None
 
 def lrs(batch):
