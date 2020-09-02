@@ -141,8 +141,8 @@ optimizer = NovoGrad(model.parameters(),lr=1,weight_decay=1e-4)
 best_val_loss = None
 
 def lrs(batch):
-    low = math.log2(1e-2)
-    high = math.log2(100)
+    low = math.log2(1e-4)
+    high = math.log2(2)
     return 2**(low+(high-low)*batch/len(range(0, train_data.size(0) - 1, args.bptt))/args.epochs)
 
 lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,lrs)
