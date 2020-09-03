@@ -187,6 +187,8 @@ def train():
         if step_count<warmup_step:
             step_count+=1
             lr = args.lr*step_count/warmup_step
+        else:
+            lr = args.lr
         for p in model.parameters():
             p.data.add_(p.grad, alpha=-lr)
 
