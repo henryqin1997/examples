@@ -162,6 +162,7 @@ def evaluate(data_source):
 def train():
     # Turn on training mode which enables dropout.
     global step_count
+    global lr
     model.train()
     total_loss = 0.
     start_time = time.time()
